@@ -54,6 +54,9 @@ header nav {
         box-shadow: 0 0 20px rgba(0,0,0,0.4);
         border-radius: 10px;
       }
+    iframe{
+        height:200px;
+    }
   }
 body {
     background-image: url(Lake_Issyk-Kul,_Kyrgyzstan.jpg);
