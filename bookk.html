@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Кот учёный. Оформление</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body>
+<header class="header">
+    <div class="logo">Ден Соолук</div>
+    <nav>
+        <ul>
+            <li><a href="main.html">Новости</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="kot.html">“Кот учёный”</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <h1>Бронирование в “Кот ученый”</h1>
+        <div class = "container2">
+            <header class="reg">
+                <h1 class="regh">Регистрационная форма для девочек</h1>
+            </header>
+        <form id="bookingForm" action="http://localhost:3000/send_ticket" method="POST">
+            <div class="col">
+            <label for="pname">ФИО родителя:</label>
+            <input placeholder="Введите ваше ФИО" type="text" id="pname" name="pname" required>
+            <br>
+            <label for="email">Email:</label>
+            <input placeholder="Введите вашу эл. почту" type="email" id="email" name="email" required>
+            <br>
+            <label for="phone">Телефон:</label>
+            <input placeholder="Введите ваш номер телефона" type="tel" id="phone" name="phone" required>
+            <br>
+            <label for="d">Дата поездки:</label>
+            <br>
+            <label><input type="radio" name="date" class="choice" id="option1" value="20 марта - 30 марта"> Дата: 20 марта - 30 марта</label>
+    <br>
+    <label><input type="radio" name="date" class="choice" id="option2" value="2 апреля - 12 апреля"> Дата: 2 апреля - 12 апреля</label>
+    <br>
+    <label><input type="radio" name="date" class="choice" id="option3" value="15 апреля - 25 апреля"> Дата: 15 апреля - 25 апреля</label>
+    <br>
+    <label><input type="radio" name="date" class="choice" id="option4" value="1 мая - 11 мая"> Дата: 1 мая - 11 мая</label>
+    <br>
+            <br>
+        </div>
+        
+            </div>
+<!------>
+<br>
+<br>
+    <div class = "container1">
+        <header class="reg">
+            <h1 class="regh">Регистрационная форма для мальчиков</h1>
+        </header>
+    <form id="bookingForm" action="http://localhost:3000/send_ticket" method="POST">
+        <div class="col">
+        <label for="pname">ФИО родителя:</label>
+        <input placeholder="Введите ваше ФИО" type="text" id="pname" name="pname" required>
+        <br>
+        <label for="email">Email:</label>
+        <input placeholder="Введите вашу эл. почту" type="email" id="email" name="email" required>
+        <br>
+        <label for="phone">Телефон:</label>
+        <input placeholder="Введите ваш номер телефона" type="tel" id="phone" name="phone" required>
+        <br>
+        <label for="d">Дата поездки:</label>
+        <br>
+        <label><input type="radio" name="date" class="choice" id="option1" value="20 марта - 30 марта"> Дата: 20 марта - 30 марта</label>
+<br>
+<label><input type="radio" name="date" class="choice" id="option2" value="2 апреля - 12 апреля"> Дата: 2 апреля - 12 апреля</label>
+<br>
+<label><input type="radio" name="date" class="choice" id="option3" value="15 апреля - 25 апреля"> Дата: 15 апреля - 25 апреля</label>
+<br>
+<label><input type="radio" name="date" class="choice" id="option4" value="1 мая - 11 мая"> Дата: 1 мая - 11 мая</label>
+<br>
+        <br>
+
+        </div>
+
+        <p class="autograph">~Made by Vieldi~</p>
+    </div>
+</div>
+<div class="boxcontacts">
+    <div class="contacts">
+        <h2>Контакты</h2>
+        <p><strong>Телефон:</strong> +996 701 831 283</p>
+        <p><strong>Email:</strong> supm.kenny@bk.ru</p>
+        <div class="socials">
+            <a href="https://vt.tiktok.com/ZSh8c2jtP/" class="inst">TikTok</a> | <a href="https://wa.me/996558065411?" class="whats">WhatsApp</a>
+        </div>
+</body>
+</html>
