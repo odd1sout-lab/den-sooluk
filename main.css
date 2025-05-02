@@ -54,9 +54,18 @@ header nav {
         box-shadow: 0 0 20px rgba(0,0,0,0.4);
         border-radius: 10px;
       }
-    iframe{
-        height:200px;
+    .ls{
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    border-radius: 10px;
+    max-height: auto;
+    max-width: 300px;
+    margin-left: 1%;
     }
+    .abz{
+    font-family: Helvetica, Calibri, sans-serif;
+    text-indent: 1%;
+    font-size: 18px;
+}
   }
 body {
     background-image: url(Lake_Issyk-Kul,_Kyrgyzstan.jpg);
