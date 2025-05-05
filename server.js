@@ -1,40 +1,70 @@
 //user: 'supm.kenny@bk.ru',
 //pass: 'TkpGe88nk19fBvxpzsvy' 
-const express = require("express");
-const mysql = require("mysql2");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const path = require("path");
+//user: 'supm.kenny@bk.ru',
+//pass: 'TkpGe88nk19fBvxpzsvy' 
+const express = require('express');
+const mysql = require('mysql2');
+const cors = require('cors');
 
-const app = express();
+const app = express(); 
+
 app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "ТВОЙ_ПАРОЛЬ",
-  database: "den_sooluk"
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'SouthParkinlove777$',
+  database: 'den_sooluk',
 });
 
-app.post("/add_user", (req, res) => {
-  const { name, phone, date_group, status } = req.body;
-  const sql = `INSERT INTO registrations (name, phone, date_group, status) VALUES (?, ?, ?, ?)`;
-  db.query(sql, [name, phone, date_group, status], (err) => {
-    if (err) return res.status(500).send("Ошибка при записи.");
-    res.send("Участник добавлен.");
+connection.connect(err => {
+  if (err) {
+    console.error('Ошибка подключения к MySQL:', err);
+    return;
+  }
+  console.log('Подключено к базе данных MySQL');
+});
+
+app.get('/places', (req, res) => {
+  const query = `
+    SELECT 
+      d.id,
+      d.title,
+      d.start_date,
+      d.end_date,
+      d.capacityg,
+      COUNT(b.id) AS booked,
+      (d.capacityg - COUNT(b.id)) AS remaining
+    FROM date d
+    LEFT JOIN booking b ON d.id = b.date_id
+    GROUP BY d.id
+  `;
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Ошибка при получении данных о местах:', err);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+app.post('/bookings', (req, res) => {
+  const { name, phone, date_id } = req.body;
+
+  const sql = 'INSERT INTO booking (name, phone, date_id) VALUES (?, ?, ?)';
+  connection.query(sql, [name, phone, date_id], (err, result) => {
+    if (err) {
+      console.error('Ошибка при добавлении заявки:', err);
+      return res.status(500).json({ error: 'Ошибка сервера' });
+    }
+    res.json({ message: 'Заявка добавлена' });
   });
 });
 
-app.get("/counts", (req, res) => {
-  const sql = `SELECT date_group, COUNT(*) AS total FROM registrations WHERE status = 'оплачено' GROUP BY date_group`;
-  db.query(sql, (err, rows) => {
-    if (err) return res.status(500).send("Ошибка при запросе.");
-    res.json(rows);
-  });
-});
-
-app.listen(3000, () => {
-  console.log("Сервер на http://localhost:3000");
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Сервер запущен на http://localhost:${port}`);
 });
