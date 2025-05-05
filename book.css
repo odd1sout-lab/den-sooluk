@@ -18,6 +18,7 @@ input, select, button {
   input, select, button {
     width: 100%;  
     padding: 8px;
+    flex-direction: column; 
   }
 }
 
