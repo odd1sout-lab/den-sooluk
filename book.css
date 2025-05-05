@@ -7,6 +7,20 @@
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
     border-radius: 30px;
 }
+
+input, select, button {
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+}
+
+@media (max-width: 720px) {
+  input, select, button {
+    width: 100%;  
+    padding: 8px;
+  }
+}
+
 .container2{
     max-width: 97%;
     margin: 0 auto;
