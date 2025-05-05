@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="book.css">
 </head>
 <body>
+    <script src="server.js" defer></script>
 <header class="header">
     <div class="logo">Ден Соолук</div>
     <nav>
@@ -20,70 +21,75 @@
     </nav>
 </header>
 <div class="main">
-    <h1>Бронирование в программу “Кот ученый”</h1>
+    <h1>Бронирование в “Кот ученый”</h1>
         <div class = "container2">
             <header class="reg">
                 <h1 class="regh">Регистрационная форма для девочек</h1>
             </header>
-        <form id="bookingForm" action="http://localhost:3000/send_ticket" method="POST">
-            <div class="col">
-            <label for="pname">ФИО родителя:</label>
-            <input placeholder="Введите ваше ФИО" type="text" id="pname" name="pname" required>
-            <br>
-            <label for="email">Email:</label>
-            <input placeholder="Введите вашу эл. почту" type="email" id="email" name="email" required>
-            <br>
-            <label for="phone">Телефон:</label>
-            <input placeholder="Введите ваш номер телефона" type="tel" id="phone" name="phone" required>
-            <br>
-            <label for="d">Дата поездки:</label>
-            <br>
-            <label><input type="radio" name="date" class="choice" id="option1" value="20 марта - 30 марта"> Дата смен: 20 марта - 30 марта</label>
-    <br>
-    <label><input type="radio" name="date" class="choice" id="option2" value="2 апреля - 12 апреля"> Дата смен: 2 апреля - 12 апреля</label>
-    <br>
-    <label><input type="radio" name="date" class="choice" id="option3" value="15 апреля - 25 апреля"> Дата смен: 15 апреля - 25 апреля</label>
-    <br>
-    <label><input type="radio" name="date" class="choice" id="option4" value="1 мая - 11 мая"> Дата смен: 1 мая - 11 мая</label>
-    <br>
-            <br>
-        </div>
-        
+        <form id="bookingForm">
+            <input type="text" name="name" placeholder="Имя" required>
+            <input type="tel" name="phone" placeholder="Телефон" required>
+          
+            <label for="date">Выберите заезд:</label>
+            <select name="date_id" id="dateSelect" required></select>
+            <button type="submit">Отправить</button>
+            <script>
+            fetch('http://localhost:3000/places')
+    .then(res => res.json())
+    .then(data => {
+      const select = document.getElementById('dateSelect');
+      function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0'); 
+      const year = date.getFullYear();
+      return `${day}.${month}.${year}`;
+}
+
+      data.forEach(item => {
+        const option = document.createElement('option');
+
+        option.value = item.id;
+        if (item.remaining > 0) {
+
+        }
+        const start = formatDate(item.start_date);
+        const end = formatDate(item.end_date);
+        option.textContent = `${item.title} (${start} — ${end}) — осталось ${item.remaining} мест`;
+
+        select.appendChild(option);
+      });
+    })
+                  .catch(error => {
+                    console.error('Ошибка при загрузке дат:', error);
+                  });
+                //msg
+                document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    // Сохраняем заявку в базу данных
+    const res = await fetch('http://localhost:3000/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    const message = `Новая заявка:\nИмя: ${data.name}\nТелефон: ${data.phone}\nДата ID: ${data.date_id}`;
+    const phoneForWhatsApp = '996558065411'; 
+
+    const url = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  });
+                </script>
+          </form>
             </div>
 <!------>
 <br>
-<br>
-    <div class = "container1">
-        <header class="reg">
-            <h1 class="regh">Регистрационная форма для мальчиков</h1>
-        </header>
-    <form id="bookingForm" action="http://localhost:3000/send_ticket" method="POST">
-        <div class="col">
-        <label for="pname">ФИО родителя:</label>
-        <input placeholder="Введите ваше ФИО" type="text" id="pname" name="pname" required>
-        <br>
-        <label for="email">Email:</label>
-        <input placeholder="Введите вашу эл. почту" type="email" id="email" name="email" required>
-        <br>
-        <label for="phone">Телефон:</label>
-        <input placeholder="Введите ваш номер телефона" type="tel" id="phone" name="phone" required>
-        <br>
-        <label for="d">Дата поездки:</label>
-        <br>
-        <label><input type="radio" name="date" class="choice" id="option1" value="20 марта - 30 марта"> Дата смен: 20 марта - 30 марта</label>
-<br>
-<label><input type="radio" name="date" class="choice" id="option2" value="2 апреля - 12 апреля"> Дата смен: 2 апреля - 12 апреля</label>
-<br>
-<label><input type="radio" name="date" class="choice" id="option3" value="15 апреля - 25 апреля"> Дата смен: 15 апреля - 25 апреля</label>
-<br>
-<label><input type="radio" name="date" class="choice" id="option4" value="1 мая - 11 мая"> Дата смен: 1 мая - 11 мая</label>
-<br>
-        <br>
-
-        </div>
-
-        <p class="autograph">~Made by Vieldi~</p>
-    </div>
 </div>
 <div class="boxcontacts">
     <footer class="mobile-footer">
@@ -103,5 +109,6 @@
         <div class="socials">
             <a href="https://vt.tiktok.com/ZSh8c2jtP/" class="inst">TikTok</a> | <a href="https://wa.me/996558065411?" class="whats">WhatsApp</a>
         </div>
+        <p class="autograph">~Made by Vieldi~</p>
 </body>
 </html>
