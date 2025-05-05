@@ -1,7 +1,5 @@
 //user: 'supm.kenny@bk.ru',
 //pass: 'TkpGe88nk19fBvxpzsvy' 
-//user: 'supm.kenny@bk.ru',
-//pass: 'TkpGe88nk19fBvxpzsvy' 
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
@@ -15,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'SouthParkinlove777$', 
-  database: 'den_sooluk'
+  password: 'SouthParkinlove777$',
+  database: 'den_sooluk',
 });
 
 connection.connect(err => {
