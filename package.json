@@ -1,10 +1,7 @@
-"scripts": {
-  "start": "node server.js"
-}
-
 {
-  "name": "my-app",
+  "name": "den-sooluk",
   "version": "1.0.0",
+  "description": "Сайт с бронированием",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
