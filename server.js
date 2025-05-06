@@ -11,9 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
-  host: '52.41.36.82,
-54.191.253.12,
-44.226.122.3',
+  host: '52.41.36.82',
   user: 'root',
   password: 'SouthParkinlove777$',
   database: 'den_sooluk'
