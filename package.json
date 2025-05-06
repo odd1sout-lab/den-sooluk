@@ -1,15 +1,11 @@
 {
-  "name": "den-sooluk",
-  "version": "1.0.0",
-  "description": "Сайт для бронирования",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mysql2": "^3.3.1"
-  }
+  "MYSQL_DATABASE": "railway",
+  "MYSQL_PUBLIC_URL": "mysql://${{MYSQLUSER}}:${{MYSQL_ROOT_PASSWORD}}@${{RAILWAY_TCP_PROXY_DOMAIN}}:${{RAILWAY_TCP_PROXY_PORT}}/${{MYSQL_DATABASE}}",
+  "MYSQL_ROOT_PASSWORD": "DqdzcXdhMAiFXFtDbsUFNcoEZXDsXuot",
+  "MYSQL_URL": "mysql://${{MYSQLUSER}}:${{MYSQL_ROOT_PASSWORD}}@${{RAILWAY_PRIVATE_DOMAIN}}:3306/${{MYSQL_DATABASE}}",
+  "MYSQLDATABASE": "${{MYSQL_DATABASE}}",
+  "MYSQLHOST": "${{RAILWAY_PRIVATE_DOMAIN}}",
+  "MYSQLPASSWORD": "${{MYSQL_ROOT_PASSWORD}}",
+  "MYSQLPORT": "3306",
+  "MYSQLUSER": "root"
 }
