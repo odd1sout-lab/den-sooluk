@@ -11,10 +11,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
-  host: '52.41.36.82',
+  host: 'mysql.railway.internal',
   user: 'root',
-  password: 'SouthParkinlove777$',
-  database: 'den_sooluk'
+  password: 'DqdzcXdhMAiFXFtDbsUFNcoEZXDsXuot',
+  database: 'railway'
 });
 
 connection.connect(err => {
