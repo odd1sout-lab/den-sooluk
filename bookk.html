@@ -1,114 +1,142 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Кот учёный. Оформление</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" type="text/css" href="book.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кот учёный. Оформление</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="book.css">
 </head>
 <body>
-    <script src="server.js" defer></script>
 <header class="header">
-    <div class="logo">Ден Соолук</div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="kot.html">“Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-    </nav>
+  <div class="logo">Ден Соолук</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Новости</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="kot.html">“Кот учёный”</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+  </nav>
 </header>
+
 <div class="main">
-    <h1>Бронирование в “Кот ученый”</h1>
-        <div class = "container2">
-            <header class="reg">
-                <h1 class="regh">Регистрационная форма для девочек</h1>
-            </header>
-        <form id="bookingForm">
-            <input type="text" name="name" placeholder="Имя" required>
-            <input type="tel" name="phone" placeholder="Телефон" required>
-          
-            <label for="date">Выберите заезд:</label>
-            <select name="date_id" id="dateSelect" required></select>
-            <button type="submit">Отправить</button>
-            <script>
-            fetch('https://den-sooluk.onrender.com/places')
+  <h1>Бронирование в “Кот ученый”</h1>
+
+  <!-- Девочки -->
+  <div class="container2">
+    <header class="reg">
+      <h1 class="regh">Регистрационная форма для девочек</h1>
+    </header>
+    <form id="bookingFormGirls">
+      <input type="text" name="name" placeholder="Имя" required>
+      <input type="tel" name="phone" placeholder="Телефон" required>
+      <label>Выберите заезд:</label>
+      <select name="date_id" id="dateSelectGirls" required></select>
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+<br>
+<br>
+  <!-- Мальчики -->
+  <div class="container1">
+    <header class="reg">
+      <h1 class="regh">Регистрационная форма для мальчиков</h1>
+    </header>
+    <form id="bookingFormBoys">
+      <input type="text" name="name" placeholder="Имя" required>
+      <input type="tel" name="phone" placeholder="Телефон" required>
+      <label>Выберите заезд:</label>
+      <select name="date_id" id="dateSelectBoys" required></select>
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  }
+
+  fetch('https://den-sooluk.onrender.com/places')
     .then(res => res.json())
     .then(data => {
-      const select = document.getElementById('dateSelect');
-      function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0'); 
-      const year = date.getFullYear();
-      return `${day}.${month}.${year}`;
-}
+      const selectGirls = document.getElementById('dateSelectGirls');
+      const selectBoys = document.getElementById('dateSelectBoys');
 
       data.forEach(item => {
-        const option = document.createElement('option');
-
-        option.value = item.id;
-        if (item.remaining > 0) {
-
-        }
         const start = formatDate(item.start_date);
         const end = formatDate(item.end_date);
-        option.textContent = `${item.title} (${start} — ${end}) — осталось ${item.remaining} мест`;
 
-        select.appendChild(option);
+        if (item.remaining_girls > 0) {
+          const optionG = document.createElement('option');
+          optionG.value = item.id;
+          optionG.textContent = `${item.title} (${start} — ${end}) — осталось ${item.remaining_girls} мест`;
+          selectGirls.appendChild(optionG);
+        }
+
+        if (item.remaining_boys > 0) {
+          const optionB = document.createElement('option');
+          optionB.value = item.id;
+          optionB.textContent = `${item.title} (${start} — ${end}) — осталось ${item.remaining_boys} мест`;
+          selectBoys.appendChild(optionB);
+        }
       });
     })
-                  .catch(error => {
-                    console.error('Ошибка при загрузке дат:', error);
-                  });
-                //msg
-                document.getElementById('bookingForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-
-    // Сохраняем заявку в базу данных
-    const res = await fetch('https://den-sooluk.onrender.com/bookings', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+    .catch(error => {
+      console.error('Ошибка при загрузке дат:', error);
     });
 
-    const result = await res.json();
+  function setupFormHandler(formId) {
+    document.getElementById(formId).addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
 
-    const message = `Новая заявка:\nИмя: ${data.name}\nТелефон: ${data.phone}\nДата ID: ${data.date_id}`;
-    const phoneForWhatsApp = '996558065411'; 
+      const res = await fetch('https://den-sooluk.onrender.com/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
 
-    const url = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  });
-                </script>
-          </form>
-            </div>
-<!------>
-<br>
+      const result = await res.json();
+
+      const message = `Новая заявка:\nИмя: ${data.name}\nТелефон: ${data.phone}\nДата ID: ${data.date_id}`;
+      const phoneForWhatsApp = '996558065411';
+      const url = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    });
+  }
+
+  setupFormHandler('bookingFormGirls');
+  setupFormHandler('bookingFormBoys');
+</script>
+
+<footer class="mobile-footer">
+  <nav>
+    <ul>
+      <li><a href="index.html">Новости</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="kot.html">“Кот учёный”</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<div class="contacts">
+  <h2>Контакты</h2>
+  <p><strong>Телефон:</strong> +996 701 831 283</p>
+  <p><strong>Email:</strong> supm.kenny@bk.ru</p>
+  <div class="socials">
+    <a href="https://vt.tiktok.com/ZSh8c2jtP/">TikTok</a> | <a href="https://wa.me/996558065411?">WhatsApp</a>
+  </div>
+  <p class="autograph">~Made by Vieldi~</p>
 </div>
-<div class="boxcontacts">
-    <footer class="mobile-footer">
-        <nav>
-          <ul>
-            <li><a href="index.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="kot.html">“Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
-        </nav>
-    </footer>
-    <div class="contacts">
-        <h2>Контакты</h2>
-        <p><strong>Телефон:</strong> +996 701 831 283</p>
-        <p><strong>Email:</strong> supm.kenny@bk.ru</p>
-        <div class="socials">
-            <a href="https://vt.tiktok.com/ZSh8c2jtP/" class="inst">TikTok</a> | <a href="https://wa.me/996558065411?" class="whats">WhatsApp</a>
-        </div>
-        <p class="autograph">~Made by Vieldi~</p>
+
 </body>
 </html>
