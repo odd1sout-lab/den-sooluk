@@ -34,7 +34,7 @@
             <select name="date_id" id="dateSelect" required></select>
             <button type="submit">Отправить</button>
             <script>
-            fetch('http://localhost:3000/places')
+            fetch('https://den-sooluk.onrender.com/places')
     .then(res => res.json())
     .then(data => {
       const select = document.getElementById('dateSelect');
@@ -71,7 +71,7 @@
     const data = Object.fromEntries(formData.entries());
 
     // Сохраняем заявку в базу данных
-    const res = await fetch('http://localhost:3000/bookings', {
+    const res = await fetch('https://den-sooluk.onrender.com/bookings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
