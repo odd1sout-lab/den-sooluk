@@ -1,5 +1,3 @@
-//user: 'supm.kenny@bk.ru',
-//pass: 'TkpGe88nk19fBvxpzsvy' 
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
@@ -11,11 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
-  host: 'yamanote.proxy.rlwy.net',      
-  port: 57638,                        
-  user: 'root',                          
-  password: 'DqdzcXdhMAiFXFtDbsUFNcoEZXDsXuot', 
-  database: 'railway'                 
+  host: 'localhost',
+  user: 'root',
+  password: 'SouthParkinlove777$',
+  database: 'den_sooluk',
 });
 
 connection.connect(err => {
@@ -33,9 +30,10 @@ app.get('/places', (req, res) => {
       d.title,
       d.start_date,
       d.end_date,
-      d.capacityg,
-      COUNT(b.id) AS booked,
-      (d.capacityg - COUNT(b.id)) AS remaining
+      d.capacity_boys,
+      d.capacity_girls,
+      SUM(CASE WHEN b.gender = 'boy' THEN 1 ELSE 0 END) AS booked_boys,
+      SUM(CASE WHEN b.gender = 'girl' THEN 1 ELSE 0 END) AS booked_girls
     FROM date d
     LEFT JOIN booking b ON d.id = b.date_id
     GROUP BY d.id
@@ -46,10 +44,15 @@ app.get('/places', (req, res) => {
       console.error('Ошибка при получении данных о местах:', err);
       res.status(500).json({ error: 'Ошибка сервера' });
     } else {
-      res.json(results);
+      res.json(results.map(item => ({
+        ...item,
+        remaining_boys: item.capacity_boys - item.booked_boys,
+        remaining_girls: item.capacity_girls - item.booked_girls
+      })));
     }
   });
 });
+
 app.post('/bookings', (req, res) => {
   const { name, phone, date_id } = req.body;
 
