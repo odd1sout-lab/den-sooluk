@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
   user: 'root',
   password: 'DqdzcXdhMAiFXFtDbsUFNcoEZXDsXuot',
   database: 'railway',
-  post:'57638'
+  port:'57638'
 });
 
 connection.connect(err => {
