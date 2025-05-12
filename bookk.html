@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Кот учёный. Оформление</title>
+  <title>Кот учёный. Бронирование</title>
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="book.css">
 </head>
@@ -107,7 +107,7 @@
       const result = await res.json();
 
       const message = `Новая заявка:\nИмя: ${data.name}\nТелефон: ${data.phone}\nДата ID: ${data.date_id}`;
-      const phoneForWhatsApp = '996558065411';
+      const phoneForWhatsApp = '996701831283';
       const url = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     });
