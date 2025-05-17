@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ОЦ "Ден Соолук бронировка"</title>
     <link rel="stylesheet" type="text/css" href="book.css">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<script src="main.js" defer></script>
-<script src="server.js" defer></script>
 <header class="header">
     <div class="logo">Ден Соолук</div>
     <nav>
         <ul>
             <li><a href="main.html">Новости</a></li>
             <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронь</a></li>
+            <li><a href="book.html">Бронирование</a></li>
+            <li><a href="kot.html">“Кот учёный”</a></li>
             <li><a href="contacts.html">Контакты</a></li>
         </ul>
     </nav>
 </header>
+
 <div class="main">
     <h1>Бронирование в Ден-Соолук</h1>
-    <h2 class="title">УСЛОВИЯ ПРИЕМА И ОБСЛУЖИВАНИЯ ДЕТСКИХ ГРУПП
-        в ДОЦ «Ден-Соолук»
-        ДОЦ «Ден-Соолук» расположен на северном берегу озера Иссык-Куль - жемчужины</h2>
-    <p class="abz">Кыргызстана в селе Бактуу-Долоноту, что в 5 минутах езды до г. Чолпон-Ата.
-        Иссык-Куль с его великолепными песчаными пляжами, с кристально чистой водой, близкой по составу к минеральной, сочетанием горного и морского климата, является прекрасной курортной зоной для здоровья Ваших детей.
+<div class="button-group">
+    <button class="buttond" onclick="showForm('standart')">Стандартная программа "Ден Соолук"</button>
+    <p class = "abz">Цена:10000 сом</p>
+    <button class="buttona" onclick="window.location.href='bookk.html'">Программа "Кот учёный"</button>
+    <p class = "abz">Цена:17000 сом</p>
+</div>
+    <div id="standart" style = "display: none;">
+    <h2 class="title">УСЛОВИЯ ПРИЕМА И ОБСЛУЖИВАНИЯ ДЕТСКИХ ГРУПП в ДОЦ «Ден-Соолук»</h2>
+    <p class="abz">Иссык-Куль с его великолепными песчаными пляжами, с кристально чистой водой, близкой по составу к минеральной, сочетанием горного и морского климата, является прекрасной курортной зоной для здоровья Ваших детей.
         Территория ДОЦ усеяна великолепными зелеными насаждениями (соснами, березами, тополями, грушей и яблоней), ухоженные аллеи со скамейками и беседками, всё это гарантирует отличное времяпрепровождение и качественный отдых.
         «Ден-Соолук» - это веселая, удивительная страна для детей от 7 до 14 лет. Во время нахождения летнего отдыха ежедневно проводятся различные культурно-массовые мероприятия.
         На территории имеется библиотека, игровая комната, летняя эстрада, футбольное поле, спортивная площадка.
@@ -40,84 +44,106 @@
     <p class="abz">Наш адрес: Кыргызская Республика, Иссык-Кульский район, с. Бактуу-Долоноту, ДОЦ «Ден-Соолук» (ориентир пионерлагерь «Каприз»).</p>
     <p class="abz"><b>Отправление и возвращение детей:</b></p>
     <p class="abz">г. Бишкек, ул. Тоголока Молдо, 17, Дворец спорта (стадион «Спартак»), в дни заезда до 7:00 утра, в дни выезда в 18:00.</p>
-    <div class = "container">
+
+    <div class="container">
         <header class="reg">
             <h1 class="regh">Регистрационная форма</h1>
         </header>
-    <form id="bookingForm" action="http://localhost:3000/send_ticket" method="POST">
-        <div class="col">
-        <label for="name">ФИО ребёнка:</label>
-        <input placeholder="Введите ФИО ребёнка" type="text" id="name" name="name" required>
-        <br>
-        <label for="pname">ФИО родителя:</label>
-        <input placeholder="Введите ваше ФИО" type="text" id="pname" name="pname" required>
-        <br>
-        <label for="email">Email:</label>
-        <input placeholder="Введите вашу эл. почту" type="email" id="email" name="email" required>
-        <br>
-        <label for="phone">Телефон:</label>
-        <input placeholder="Введите ваш номер телефона" type="tel" id="phone" name="phone" required>
-        <br>
-        <label for="phone2">Телефон(Дополнительный):</label>
-        <input placeholder="Введите ваш номер телефона(дополнительно)" type="tel" id="phone2" name="phone2">
-        <br>
-        <label for="address">Адрес:</label>
-        <input placeholder="Введите ваш адрес" type="text" id="address" name="address" required>
-        <br>
-        <label for="age">Возраст ребёнка (от 7 до 14):</label>
-        <input placeholder="От 7 до 14 лет!" type="number" id="age" name="age" required>
-        <br>
-        <label for="job">Место работы:</label>
-        <input placeholder="Место работы родителей" type="text" id="job" name="job" required>
-        <br>
-        <label for="d">Дата поездки:</label>
-        <br>
-        <label><input type="radio" name="date" class="choice" id="option1" value="20 марта - 30 марта"> Дата: 20 марта - 30 марта</label>
-<br>
-<label><input type="radio" name="date" class="choice" id="option2" value="2 апреля - 12 апреля"> Дата: 2 апреля - 12 апреля</label>
-<br>
-<label><input type="radio" name="date" class="choice" id="option3" value="15 апреля - 25 апреля"> Дата: 15 апреля - 25 апреля</label>
-<br>
-<label><input type="radio" name="date" class="choice" id="option4" value="1 мая - 11 мая"> Дата: 1 мая - 11 мая</label>
-<br>
-        <br>
-        </div>
-    <div id="payment">
-        <h3 class="reg">Оплата</h3>
-        <p><strong>Стоимость путёвки:</strong> 5 сом</p>
-        <p>Отсканируйте этот QR-код для оплаты путёвки:</p>
-        <img src="bank_qr.png" alt="QR БАНК" width="200"><br><br>
-        <button type="submit" id="confirmPaymentBtn">Я оплатил</button>
+        <form id="bookingForm" method="POST">
+            <div class="col">
+                <label for="name">ФИО ребёнка:</label>
+                <input placeholder="Введите ФИО ребёнка" type="text" id="name" name="name" required><br>
+
+                <label for="pname">ФИО родителя:</label>
+                <input placeholder="Введите ваше ФИО" type="text" id="pname" name="pname" required><br>
+
+                <label for="email">Email:</label>
+                <input placeholder="Введите вашу эл. почту" type="email" id="email" name="email" required><br>
+
+                <label for="phone">Телефон:</label>
+                <input placeholder="Введите ваш номер телефона" type="tel" id="phone" name="phone" required><br>
+
+                <label for="phone2">Телефон(Дополнительный):</label>
+                <input placeholder="Введите ваш номер телефона(дополнительно)" type="tel" id="phone2" name="phone2"><br>
+
+                <label for="address">Адрес:</label>
+                <input placeholder="Введите ваш адрес" type="text" id="address" name="address" required><br>
+
+                <label for="age">Возраст ребёнка (от 7 до 14):</label>
+                <input placeholder="От 7 до 14 лет!" type="number" id="age" name="age" required><br>
+
+                <label for="job">Место работы:</label>
+                <input placeholder="Место работы родителей" type="text" id="job" name="job" required><br>
+
+                <label>Дата поездки:</label><br>
+                <label><input type="radio" name="date" value="26 июня - 05 июля"> 26 июня - 05 июля</label><br>
+                <label><input type="radio" name="date" value="05 июля - 14 июля"> 05 июля - 14 июля</label><br>
+                <label><input type="radio" name="date" value="14 июля - 23 июля"> 14 июля - 23 июля</label><br>
+                <label><input type="radio" name="date" value="23 июля - 01 августа"> 23 июля - 01 августа</label><br>
+                <label><input type="radio" name="date" value="01 августа - 10 августа"> 01 августа - 10 августа</label><br>
+                <label><input type="radio" name="date" value="10 августа - 19 августа"> 10 августа - 19 августа</label><br>
+                <label><input type="radio" name="date" value="19 августа - 28 августа"> 19 августа - 28 августа</label><br>
+
+                <button class="buttond" type="submit">Отправить</button>
+            </div>
+        </form>
     </div>
-    </form>
+    </div>
+
+<div class="contacts">
+  <h2>Контакты</h2>
+  <p><strong>Телефон:</strong> +996 701 831 283</p>
+  <p><strong>Email:</strong> supm.kenny@bk.ru</p>
+  <div class="socials">
+    <a href="https://vt.tiktok.com/ZSh8c2jtP/">TikTok</a> | <a href="https://wa.me/996701831283?">WhatsApp</a>
+  </div>
+  <p class="autograph">~Made by Vieldi~</p>
 </div>
+
 <script>
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
-    let selectedDate = document.querySelector('input[name="date"]:checked');
-    
+function showForm(type) {
+    document.querySelector('.button-group').style.display = 'none';
+    document.getElementById('standart').style.display = 'block';
+    document.getElementById('kot').style.display = 'block';
+
+    document.getElementById(type).style.display = 'block';
+}
+
+document.getElementById("bookingForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const selectedDate = document.querySelector('input[name="date"]:checked');
     if (!selectedDate) {
-        event.preventDefault();  // Остановить отправку формы, если ничего не выбрано
-        alert("Выберите дату поездки!");
+        alert("Пожалуйста, выберите дату поездки!");
         return;
     }
 
-    console.log("Выбранная дата:", selectedDate.value);
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    data.date = selectedDate.value; 
+
+    try {
+        // Отправка в базу данных через сервер
+        const res = await fetch('https://den-sooluk.onrender.com/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error("Ошибка при отправке данных на сервер");
+
+        // Уведомление в WhatsApp
+        const message = `Новая заявка:\nИмя ребёнка: ${data.name}\nИмя родителя: ${data.pname}\nТелефон: ${data.phone}\nАлрес: ${data.address}\nДата поездки: ${data.date}`;
+        const phoneForWhatsApp = '996701831283';
+        const waUrl = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank');
+
+        alert("Заявка успешно отправлена!");
+        this.reset();
+    } catch (error) {
+        console.error(error);
+        alert("Произошла ошибка при отправке заявки. Попробуйте ещё раз.");
+    }
 });
 </script>
-
-</script>
-</div>
-<div class="boxcontacts">
-    <div class="contacts">
-        <h2>Контакты</h2>
-        <p><strong>Телефон:</strong> +996 xxxxxxxx</p>
-        <p><strong>Email:</strong> hzhzhz.@chru</p>
-        <p><strong>Адрес:</strong> Кудыкины горы</p>
-        <div class="socials">
-            <a href="" class="inst">Instagram</a> | <a href="" class="whats">WhatsApp</a>
-        </div>
-        <p class="autograph">~Made by Vieldi~</p>
-    </div>
-</div>
 </body>
 </html>
