@@ -1,5 +1,5 @@
 .container1{
-    max-width: 97%;
+    max-width: 90%;
     margin: 0 auto;
     margin: 0 auto;
     background-color: #6795f8;
@@ -7,31 +7,40 @@
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
     border-radius: 30px;
 }
-
-input, select, button {
-  width: 300px;
-  padding: 10px;
-  margin: 10px;
-}
-
-@media (max-width: 600px) {
-  input, select, button {
-    width: 100%;  
-    padding: 8px;
-    flex-direction: column; 
-  }
-  select {
-    width: 100%
-}
-
 .container2{
-    max-width: 97%;
+    max-width: 90%;
     margin: 0 auto;
     margin: 0 auto;
     background-color: #ff78e9;
     padding: 40px;
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
     border-radius: 30px;
+}
+.container{
+    max-width: 90%;
+    margin: 0 auto;
+    margin: 0 auto;
+    background-color:#6fb5a1;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    border-radius: 30px;
+}
+.buttond{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #3d8975, #5be0bd);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 form{
     font-size: 20px;
