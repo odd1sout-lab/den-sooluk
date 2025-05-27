@@ -1,63 +1,91 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ОЦ "Ден Соолук новости"</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
-<header class="header">
-    <div class="logo">Ден Соолук</div>
-    <nav>
-        <ul>
-            <li><a href="main.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронирование</a></li>
-            <li><a href="kot.html">Программа “Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-    </nav>
-</header>
-<div class="main">
-    <h1>Новости в Ден-Соолук</h1>
-    <table>
-        <caption>График смен в оздоровительный центр "Ден-Соолук" на 2025 г.</caption>
-        <tr>
-          <th>Смены</th>
-          <th>Начало смены</th>
-          <th>Конец смены</th>
-        </tr>
-        <tr><td>I</td><td>26 июня 2025 г.</td><td>05 июля 2025 г.</td></tr>
-        <tr><td>II</td><td>05 июля 2025 г.</td><td>14 июля 2025 г.</td></tr>
-        <tr><td>III</td><td>14 июля 2025 г.</td><td>23 июля 2025 г.</td></tr>
-        <tr><td>IV</td><td>23 июля 2025 г.</td><td>01 августа 2025 г.</td></tr>
-        <tr><td>V</td><td>01 августа 2025 г.</td><td>10 августа 2025 г.</td></tr>
-        <tr><td>VI</td><td>10 августа 2025 г.</td><td>19 августа 2025 г.</td></tr>
-        <tr><td>VII</td><td>19 августа 2025 г.</td><td>28 августа 2025 г.</td></tr>
-      </table>
-</div>
-<div class="boxcontacts">
-    <footer class="mobile-footer">
-        <nav>
-          <ul>
-            <li><a href="index.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронирование</a></li>
-            <li><a href="kot.html">Программа “Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ОЦ "Ден Соолук Новости"</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">Ден Соолук</div>
+        <nav class="nav">
+          <a href="index.html">Новости</a>
+          <a href="about.html">О нас</a>
+          <a href="book.html">Бронирование</a>
+          <a href="kot.html">Программа “Кот учёный”</a>
+          <a href="contacts.html">Контакты</a>
         </nav>
-    </footer>
-    <div class="contacts">
-        <h2>Контакты</h2>
-        <p><strong>Телефон:</strong> +996 701 831 283</p>
-        <p><strong>Email:</strong> supm.kenny@bk.ru</p>
-        <div class="socials">
-            <a href="https://vt.tiktok.com/ZSh8c2jtP/" class="inst">TikTok</a> | <a href="https://wa.me/996701831283?" class="whats">WhatsApp</a>
+        <button  style='text-align:right' id="themeToggle" class="theme-toggle">🌙</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="schedule">
+        <h2>График смен на 2025 год</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Смена</th>
+              <th>Начало</th>
+              <th>Конец</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>I</td><td>26 июня</td><td>05 июля</td></tr>
+            <tr><td>II</td><td>05 июля</td><td>14 июля</td></tr>
+            <tr><td>III</td><td>14 июля</td><td>23 июля</td></tr>
+            <tr><td>IV</td><td>23 июля</td><td>01 августа</td></tr>
+            <tr><td>V</td><td>01 августа</td><td>10 августа</td></tr>
+            <tr><td>VI</td><td>10 августа</td><td>19 августа</td></tr>
+            <tr><td>VII</td><td>19 августа</td><td>28 августа</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <nav class="nav">
+          <a href="index.html">Новости</a>
+          <a href="about.html">О нас</a>
+          <a href="book.html">Бронирование</a>
+          <a href="kot.html">Программа “Кот учёный”</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="contacts">
+          <h3>Контакты</h3>
+          <p><strong>Телефон:</strong> +996 701 831 283</p>
+          <p><strong>Email:</strong> supm.kenny@bk.ru</p>
+          <div class="socials">
+            <a href="https://vt.tiktok.com/ZSh8c2jtP/">TikTok</a>
+            <a href="https://wa.me/996701831283?">WhatsApp</a>
+          </div>
+          <p class="autograph">~Made by Vieldi~</p>
         </div>
-        <p class="autograph">~Made by Vieldi~</p>
-    </div>
-</div>
-</body>
+      </div>
+    </footer>
+
+    <script>
+      const toggleBtn = document.getElementById('themeToggle');
+      const body = document.body;
+
+      if (localStorage.getItem('theme') === 'light') {
+        body.classList.add('light');
+        toggleBtn.textContent = '☀️';
+      }
+
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('light');
+        if (body.classList.contains('light')) {
+          toggleBtn.textContent = '☀️';
+          localStorage.setItem('theme', 'light');
+        } else {
+          toggleBtn.textContent = '🌙';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    </script>
+  </body>
 </html>
