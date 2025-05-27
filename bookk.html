@@ -1,143 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Кот учёный. Бронирование</title>
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="book.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Кот учёный. Оформление</title>
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-<header class="header">
-    <div class="logo">Ден Соолук</div>
-    <nav>
-        <ul>
-            <li><a href="main.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронирование</a></li>
-            <li><a href="kot.html">Программа “Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-    </nav>
-</header>
-<div class="main">
-  <h1>Бронирование в “Кот ученый”</h1>
+  <header class="header">
+    <div class="container">
+      <div class="logo">Ден Соолук</div>
+      <nav class="nav">
+        <a href="index.html">Новости</a>
+        <a href="about.html">О нас</a>
+        <a href="book.html">Бронирование</a>
+        <a href="kot.html">Программа “Кот учёный”</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+    </div>
+  </header>
 
-  <!-- Девочки -->
-  <div class="container2">
-    <header class="reg">
-      <h1 class="regh">Регистрационная форма для девочек</h1>
-    </header>
-    <form id="bookingFormGirls">
-      <input type="text" name="name" placeholder="Имя" required>
-      <input type="tel" name="phone" placeholder="Телефон" required>
-      <label>Выберите заезд:</label>
-      <select name="date_id" id="dateSelectGirls" required></select>
-      <button type="submit">Отправить</button>
-    </form>
-  </div>
-<br>
-<br>
-  <!-- Мальчики -->
-  <div class="container1">
-    <header class="reg">
-      <h1 class="regh">Регистрационная форма для мальчиков</h1>
-    </header>
-    <form id="bookingFormBoys">
-      <input type="text" name="name" placeholder="Имя" required>
-      <input type="tel" name="phone" placeholder="Телефон" required>
-      <label>Выберите заезд:</label>
-      <select name="date_id" id="dateSelectBoys" required></select>
-      <button type="submit">Отправить</button>
-    </form>
-  </div>
-</div>
+  <div class="main">
+    <h1>Бронирование в “Кот ученый”</h1>
 
-<script>
-  function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('ru-RU', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
+    <div class="form-section">
+      <h2>Регистрация для девочек</h2>
+      <form id="bookingFormGirls">
+        <input type="text" name="name" placeholder="Имя девочки" required />
+        <input type="tel" name="phone" placeholder="Телефон родителя" required />
+        <select name="date_id" id="dateSelectGirls" required>
+          <option value="">Выберите дату</option>
+        </select>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+
+    <div class="form-section">
+      <h2>Регистрация для мальчиков</h2>
+      <form id="bookingFormBoys">
+        <input type="text" name="name" placeholder="Имя мальчика" required />
+        <input type="tel" name="phone" placeholder="Телефон родителя" required />
+        <select name="date_id" id="dateSelectBoys" required>
+          <option value="">Выберите дату</option>
+        </select>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html">Новости</a>
+        <a href="about.html">О нас</a>
+        <a href="book.html">Бронирование</a>
+        <a href="kot.html">Программа “Кот учёный”</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="contacts">
+        <h3>Контакты</h3>
+        <p><strong>Телефон:</strong> +996 701 831 283</p>
+        <p><strong>Email:</strong> supm.kenny@bk.ru</p>
+        <div class="socials">
+          <a href="https://vt.tiktok.com/ZSh8c2jtP/">TikTok</a>
+          <a href="https://wa.me/996701831283?">WhatsApp</a>
+        </div>
+        <p class="autograph">~Made by Vieldi~</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('light');
+      localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+      toggleBtn.textContent = body.classList.contains('light') ? '☀️' : '🌙';
     });
-  }
 
-  fetch('https://den-sooluk.onrender.com/places')
-    .then(res => res.json())
-    .then(data => {
-      const selectGirls = document.getElementById('dateSelectGirls');
-      const selectBoys = document.getElementById('dateSelectBoys');
-
-      data.forEach(item => {
-        const start = formatDate(item.start_date);
-        const end = formatDate(item.end_date);
-
-        if (item.remaining_girls > 0) {
-          const optionG = document.createElement('option');
-          optionG.value = item.id;
-          optionG.textContent = `${item.title} (${start} — ${end}) — осталось ${item.remaining_girls} мест`;
-          selectGirls.appendChild(optionG);
-        }
-
-        if (item.remaining_boys > 0) {
-          const optionB = document.createElement('option');
-          optionB.value = item.id;
-          optionB.textContent = `${item.title} (${start} — ${end}) — осталось ${item.remaining_boys} мест`;
-          selectBoys.appendChild(optionB);
-        }
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
       });
-    })
-    .catch(error => {
-      console.error('Ошибка при загрузке дат:', error);
-    });
+    }
 
-  function setupFormHandler(formId) {
-    document.getElementById(formId).addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      const data = Object.fromEntries(formData.entries());
-
-      const res = await fetch('https://den-sooluk.onrender.com/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-
-      const result = await res.json();
-
-      const message = `Новая заявка:\nИмя: ${data.name}\nТелефон: ${data.phone}\nДата ID: ${data.date_id}`;
-      const phoneForWhatsApp = '996701831283';
-      const url = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    });
+    const dates = [
+  {
+    id: 1,
+    title: "Смена I",
+    start: "2025-06-26",
+    end: "2025-07-05",
+    girls: 10,
+    boys: 10
+  },
+  {
+    id: 2,
+    title: "Смена II",
+    start: "2025-07-05",
+    end: "2025-07-14",
+    girls: 10,
+    boys: 10
+  },
+  {
+    id: 3,
+    title: "Смена III",
+    start: "2025-07-14",
+    end: "2025-07-23",
+    girls: 10,
+    boys: 10
+  },
+  {
+    id: 4,
+    title: "Смена IV",
+    start: "2025-07-23",
+    end: "2025-08-01",
+    girls: 10,
+    boys: 10
+  },
+  {
+    id: 5,
+    title: "Смена V",
+    start: "2025-08-01",
+    end: "2025-08-10",
+    girls: 10,
+    boys: 10
+  },
+  {
+    id: 6,
+    title: "Смена VI",
+    start: "2025-08-10",
+    end: "2025-08-19",
+    girls: 10,
+    boys: 10
+  },
+  {
+    id: 7,
+    title: "Смена VII",
+    start: "2025-08-19",
+    end: "2025-08-28",
+    girls: 10,
+    boys: 10
   }
+];
 
-  setupFormHandler('bookingFormGirls');
-  setupFormHandler('bookingFormBoys');
-</script>
+    dates.forEach(item => {
+      const start = formatDate(item.start);
+      const end = formatDate(item.end);
 
-<footer class="mobile-footer">
-  <nav>
-    <ul>
-      <li><a href="index.html">Новости</a></li>
-      <li><a href="about.html">О нас</a></li>
-      <li><a href="book.html">Бронирование</a></li>
-      <li><a href="kot.html">Программа “Кот учёный”</a></li>
-      <li><a href="contacts.html">Контакты</a></li>
-    </ul>
-  </nav>
-</footer>
+      if (item.girls > 0) {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        opt.textContent = `${item.title} (${start} — ${end}) — осталось ${item.girls} мест`;
+        document.getElementById('dateSelectGirls').appendChild(opt);
+      }
 
-<div class="contacts">
-  <h2>Контакты</h2>
-  <p><strong>Телефон:</strong> +996 701 831 283</p>
-  <p><strong>Email:</strong> supm.kenny@bk.ru</p>
-  <div class="socials">
-    <a href="https://vt.tiktok.com/ZSh8c2jtP/">TikTok</a> | <a href="https://wa.me/996701831283?" class="whats">WhatsApp</a>
-  </div>
-  <p class="autograph">~Made by Vieldi~</p>
-</div>
+      if (item.boys > 0) {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        opt.textContent = `${item.title} (${start} — ${end}) — осталось ${item.boys} мест`;
+        document.getElementById('dateSelectBoys').appendChild(opt);
+      }
+    });
 
+    function setupFormHandler(formId) {
+      document.getElementById(formId).addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+        const selectedOption = this.querySelector('select option:checked');
+        const selectedDateText = selectedOption ? selectedOption.textContent : '(дата не выбрана)';
+
+        const message = `Новая заявка:\nИмя: ${data.name}\nТелефон: ${data.phone}\nСмена: ${selectedDateText}`;
+        const phoneForWhatsApp = '996701831283';
+        const url = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+      });
+    }
+
+    setupFormHandler('bookingFormGirls');
+    setupFormHandler('bookingFormBoys');
+  </script>
 </body>
 </html>
