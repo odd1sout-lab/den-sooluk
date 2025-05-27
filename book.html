@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ОЦ "Ден Соолук бронировка"</title>
-    <link rel="stylesheet" type="text/css" href="book.css">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<header class="header">
-    <div class="logo">Ден Соолук</div>
-    <nav>
-        <ul>
-            <li><a href="main.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронирование</a></li>
-            <li><a href="kot.html">Программа “Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-    </nav>
-</header>
+  <header class="header">
+      <div class="container">
+        <div class="logo">Ден Соолук</div>
+        <nav class="nav">
+          <a href="index.html">Новости</a>
+          <a href="about.html">О нас</a>
+          <a href="book.html">Бронирование</a>
+          <a href="kot.html">Программа “Кот учёный”</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+        <button  style='text-align:right' id="themeToggle" class="theme-toggle">🌙</button>
+      </div>
+    </header>
+ <main class="main">
+    <h1>Бронирование</h1>
+    <div class="program-select">
+      <button class="buttond" onclick="showForm('standart')">Программа "Ден Соолук"</button>
+      <p class="abz">Цена: 10 000 сом</p>
+      <button class="buttona" onclick="window.location.href='bookk.html'">Программа "Кот учёный"</button>
+      <p class="abz">Цена: 17 000 сом</p>
+    </div>
 
-<div class="main">
-    <h1>Бронирование в Ден-Соолук</h1>
-<div class="button-group">
-    <button class="buttond" onclick="showForm('standart')">Стандартная программа "Ден Соолук"</button>
-    <p class = "abz">Цена:10000 сом</p>
-    <button class="buttona" onclick="window.location.href='bookk.html'">Программа "Кот учёный"</button>
-    <p class = "abz">Цена:17000 сом</p>
-</div>
-    <div id="standart" style = "display: none;">
+    <section id="standart" class="form-section" style="display: none;">
     <h2 class="title">УСЛОВИЯ ПРИЕМА И ОБСЛУЖИВАНИЯ ДЕТСКИХ ГРУПП в ДОЦ «Ден-Соолук»</h2>
     <p class="abz">Иссык-Куль с его великолепными песчаными пляжами, с кристально чистой водой, близкой по составу к минеральной, сочетанием горного и морского климата, является прекрасной курортной зоной для здоровья Ваших детей.
         Территория ДОЦ усеяна великолепными зелеными насаждениями (соснами, березами, тополями, грушей и яблоней), ухоженные аллеи со скамейками и беседками, всё это гарантирует отличное времяпрепровождение и качественный отдых.
@@ -45,59 +45,92 @@
     <p class="abz"><b>Отправление и возвращение детей:</b></p>
     <p class="abz">г. Бишкек, ул. Тоголока Молдо, 17, Дворец спорта (стадион «Спартак»), в дни заезда до 7:00 утра, в дни выезда в 18:00.</p>
 
-    <div class="container">
-        <header class="reg">
-            <h1 class="regh">Регистрационная форма</h1>
-        </header>
-        <form id="bookingForm" method="POST">
-            <div class="col">
-                <label for="name">ФИО ребёнка:</label>
-                <input placeholder="Введите ФИО ребёнка" type="text" id="name" name="name" required><br>
+      <h2>Регистрационная форма</h2>
+      <form id="bookingForm" method="POST">
+        <div class="form-grid">
+          <label>ФИО ребёнка:<input type="text" name="name" required /></label>
+          <label>ФИО родителя:<input type="text" name="pname" required /></label>
+          <label>Email:<input type="email" name="email" required /></label>
+          <label>Телефон:<input type="tel" name="phone" required /></label>
+          <label>Доп. телефон:<input type="tel" name="phone2" /></label>
+          <label>Адрес:<input type="text" name="address" required /></label>
+          <label>Возраст (7-14):<input type="number" name="age" min="7" max="14" required /></label>
+          <label>Место работы:<input type="text" name="job" required /></label>
+        </div>
 
-                <label for="pname">ФИО родителя:</label>
-                <input placeholder="Введите ваше ФИО" type="text" id="pname" name="pname" required><br>
+        <fieldset class="dates">
+  <legend>Выберите дату поездки:</legend>
+  <div class="date-options">
+    <label><input type="radio" name="date" value="26 июня - 05 июля" /> 26 июня – 5 июля</label>
+    <label><input type="radio" name="date" value="05 июля - 14 июля" /> 5 июля – 14 июля</label>
+    <label><input type="radio" name="date" value="14 июля - 23 июля" /> 14 июля – 23 июля</label>
+    <label><input type="radio" name="date" value="23 июля - 01 августа" /> 23 июля – 1 августа</label>
+    <label><input type="radio" name="date" value="01 августа - 10 августа" /> 1 августа – 10 августа</label>
+    <label><input type="radio" name="date" value="10 августа - 19 августа" /> 10 августа – 19 августа</label>
+    <label><input type="radio" name="date" value="19 августа - 28 августа" /> 19 августа – 28 августа</label>
+  </div>
+</fieldset>
 
-                <label for="email">Email:</label>
-                <input placeholder="Введите вашу эл. почту" type="email" id="email" name="email" required><br>
+        <button class="submit-btn" type="submit" style="color: aliceblue;">Отправить заявку</button>
+      </form>
+    </section>
+  </main>
 
-                <label for="phone">Телефон:</label>
-                <input placeholder="Введите ваш номер телефона" type="tel" id="phone" name="phone" required><br>
+ <footer class="footer">
+      <div class="container">
+        <nav class="nav">
+          <a href="index.html">Новости</a>
+          <a href="about.html">О нас</a>
+          <a href="book.html">Бронирование</a>
+          <a href="kot.html">Программа “Кот учёный”</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+      <div class="contacts">
+          <h3>Контакты</h3>
+          <p><strong>Телефон:</strong> +996 701 831 283</p>
+          <p><strong>Email:</strong> supm.kenny@bk.ru</p>
+          <div class="socials">
+            <a href="https://vt.tiktok.com/ZSh8c2jtP/">TikTok</a>
+            <a href="https://wa.me/996701831283?">WhatsApp</a>
+          </div>
+          <p class="autograph">~Made by Vieldi~</p>
+        </div>
+      </div>
+    </footer>
 
-                <label for="phone2">Телефон(Дополнительный):</label>
-                <input placeholder="Введите ваш номер телефона(дополнительно)" type="tel" id="phone2" name="phone2"><br>
+  <script defer>
+    const toggleBtn = document.getElementById('themeToggle');
+      const body = document.body;
 
-                <label for="address">Адрес:</label>
-                <input placeholder="Введите ваш адрес" type="text" id="address" name="address" required><br>
+      if (localStorage.getItem('theme') === 'light') {
+        body.classList.add('light');
+        toggleBtn.textContent = '☀️';
+      }
 
-                <label for="age">Возраст ребёнка (от 7 до 15):</label>
-                <input placeholder="От 7 до 15 лет!" type="number" id="age" name="age" required><br>
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('light');
+        if (body.classList.contains('light')) {
+          toggleBtn.textContent = '☀️';
+          localStorage.setItem('theme', 'light');
+        } else {
+          toggleBtn.textContent = '🌙';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
 
-                <label for="job">Место работы:</label>
-                <input placeholder="Место работы родителей" type="text" id="job" name="job" required><br>
-
-                <label>Дата поездки:</label><br>
-                <label><input type="radio" name="date" value="26 июня - 05 июля"> 26 июня - 05 июля</label><br>
-                <label><input type="radio" name="date" value="05 июля - 14 июля"> 05 июля - 14 июля</label><br>
-                <label><input type="radio" name="date" value="14 июля - 23 июля"> 14 июля - 23 июля</label><br>
-                <label><input type="radio" name="date" value="23 июля - 01 августа"> 23 июля - 01 августа</label><br>
-                <label><input type="radio" name="date" value="01 августа - 10 августа"> 01 августа - 10 августа</label><br>
-                <label><input type="radio" name="date" value="10 августа - 19 августа"> 10 августа - 19 августа</label><br>
-                <label><input type="radio" name="date" value="19 августа - 28 августа"> 19 августа - 28 августа</label><br>
-
-                <button class="buttond" type="submit">Отправить</button>
-            </div>
-        </form>
-    </div>
-    </div>
-
-<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const details = btn.nextElementSibling;
+        details.classList.toggle('open');
+        btn.textContent = details.classList.contains('open') ? 'Скрыть информацию' : 'Узнать подробнее';
+      });
+    });
+  });
 function showForm(type) {
-    document.querySelector('.button-group').style.display = 'none';
-    document.getElementById('standart').style.display = 'block';
-    document.getElementById('kot').style.display = 'block';
-
-    document.getElementById(type).style.display = 'block';
-}
+      document.querySelector('.program-select').style.display = 'none';
+      document.getElementById(type).style.display = 'block';
+    }
 
 document.getElementById("bookingForm").addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -135,27 +168,5 @@ document.getElementById("bookingForm").addEventListener("submit", async function
     }
 });
 </script>
-</div>
-    <div class="boxcontacts">
-    <footer class="mobile-footer">
-        <nav>
-          <ul>
-            <li><a href="index.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронирование</a></li>
-            <li><a href="kot.html">Программа “Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
-        </nav>
-    </footer>
-    <div class="contacts">
-        <h2>Контакты</h2>
-        <p><strong>Телефон:</strong> +996 701 831 283</p>
-        <p><strong>Email:</strong> supm.kenny@bk.ru</p>
-        <div class="socials">
-            <a href="https://vt.tiktok.com/ZSh8c2jtP/" class="inst">TikTok</a> | <a href="https://wa.me/996701831283?" class="whats">WhatsApp</a>
-        </div>
-        <p class="autograph">~Made by Vieldi~</p>
-    </div>
 </body>
 </html>
