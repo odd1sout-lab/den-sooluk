@@ -8,21 +8,22 @@
 </head>
 <body>
 <header class="header">
-    <div class="logo">Ден Соолук</div>
-    <nav>
-        <ul>
-            <li><a href="main.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронирование</a></li>
-            <li><a href="kot.html">Программа “Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-    </nav>
-</header>
-<div class="main">
+      <div class="container">
+        <div class="logo">Ден Соолук</div>
+        <nav class="nav">
+          <a href="index.html">Новости</a>
+          <a href="about.html">О нас</a>
+          <a href="book.html">Бронирование</a>
+          <a href="kot.html">Программа “Кот учёный”</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+        <button  style='text-align:right' id="themeToggle" class="theme-toggle">🌙</button>
+      </div>
+    </header>
+<main>
     <h1>Возникли какие-то проблемы? Хотите забронировать? Можете связаться с нами прямо сейчас!</h1>
     <div class = "call">
-        <span class="numb"><h2>Контактный телефон директора ДОЦ:</h2>+996 701 831 283</span>
+        <span class="numb"><h2>Контактный телефон директора ОЦ:</h2>+996 701 831 283</span>
         <span class="numb"><h2>Электроная почта</h2>supm.kenny@bk.ru</span>
         <span class="numb"><h2>Телеграм:</h2>@Vieldi4</span>
         <span class="numb"><h2>ТикТок:</h2>@den.sooluk_</span>
@@ -31,28 +32,47 @@
     <p class="abz">Режим работы ДОЦ с 26.06 - 28.08.2025г. – 7 потоков.</p>
 
     <p class="abz">Вот уже более 20 лет мы дарим детям только позитивные эмоции, которые остаются яркими воспоминаниями на всю жизнь.</p>
-</div>
-<div class="boxcontacts">
-    <footer class="mobile-footer">
-        <nav>
-          <ul>
-            <li><a href="index.html">Новости</a></li>
-            <li><a href="about.html">О нас</a></li>
-            <li><a href="book.html">Бронирование</a></li>
-            <li><a href="kot.html">Программа “Кот учёный”</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
+</main>
+<footer class="footer">
+      <div class="container">
+        <nav class="nav">
+          <a href="index.html">Новости</a>
+          <a href="about.html">О нас</a>
+          <a href="book.html">Бронирование</a>
+          <a href="kot.html">Программа “Кот учёный”</a>
+          <a href="contacts.html">Контакты</a>
         </nav>
-    </footer>
-    <div class="contacts">
-        <h2>Контакты</h2>
-        <p><strong>Телефон:</strong> +996 701 831 283</p>
-        <p><strong>Email:</strong> supm.kenny@bk.ru</p>
-        <div class="socials">
-            <a href="https://vt.tiktok.com/ZSh8c2jtP/" class="inst">TikTok</a> | <a href="https://wa.me/996701831283?" class="whats">WhatsApp</a>
+        <div class="contacts">
+          <h3>Контакты</h3>
+          <p><strong>Телефон:</strong> +996 701 831 283</p>
+          <p><strong>Email:</strong> supm.kenny@bk.ru</p>
+          <div class="socials">
+            <a href="https://vt.tiktok.com/ZSh8c2jtP/">TikTok</a>
+            <a href="https://wa.me/996701831283?">WhatsApp</a>
+          </div>
+          <p class="autograph">~Made by Vieldi~</p>
         </div>
-        <p class="autograph">~Made by Vieldi~</p>
-    </div>
-</div>
+      </div>
+    </footer>
+<script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+      if (localStorage.getItem('theme') === 'light') {
+        body.classList.add('light');
+        toggleBtn.textContent = '☀️';
+      }
+
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('light');
+        if (body.classList.contains('light')) {
+          toggleBtn.textContent = '☀️';
+          localStorage.setItem('theme', 'light');
+        } else {
+          toggleBtn.textContent = '🌙';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+</script>
 </body>
 </html>
