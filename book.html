@@ -132,40 +132,32 @@ function showForm(type) {
       document.getElementById(type).style.display = 'block';
     }
 
-document.getElementById("bookingForm").addEventListener("submit", async function(event) {
-    event.preventDefault();
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-    const selectedDate = document.querySelector('input[name="date"]:checked');
-    if (!selectedDate) {
-        alert("Пожалуйста, выберите дату поездки!");
-        return;
-    }
+  const selectedDate = document.querySelector('input[name="date"]:checked');
+  if (!selectedDate) {
+    alert("Пожалуйста, выберите дату поездки!");
+    return;
+  }
 
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-    data.date = selectedDate.value; 
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+  data.date = selectedDate.value;
 
-    try {
-        // Отправка в базу данных через сервер
-        const res = await fetch('https://den-sooluk.onrender.com/bookings', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        if (!res.ok) throw new Error("Ошибка при отправке данных на сервер");
+  const message = `Новая заявка:
+👶 Имя ребёнка: ${data.name}
+👨 Родитель: ${data.pname}
+📞 Телефон: ${data.phone}
+📍 Адрес: ${data.address}
+📅 Дата поездки: ${data.date}
+✉️ Email: ${data.email}
+🏢 Место работы: ${data.job}
+📞 Доп. телефон: ${data.phone2 || 'Нет'}`;
 
-        // Уведомление в WhatsApp
-        const message = `Новая заявка:\nИмя ребёнка: ${data.name}\nИмя родителя: ${data.pname}\nТелефон: ${data.phone}\nАлрес: ${data.address}\nДата поездки: ${data.date}`;
-        const phoneForWhatsApp = '996701831283';
-        const waUrl = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
-        window.open(waUrl, '_blank');
-
-        alert("Заявка успешно отправлена!");
-        this.reset();
-    } catch (error) {
-        console.error(error);
-        alert("Произошла ошибка при отправке заявки. Попробуйте ещё раз.");
-    }
+  const phoneForWhatsApp = '996701831283'; 
+  const waUrl = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`;
+  window.open(waUrl, '_blank');
 });
 </script>
 </body>
