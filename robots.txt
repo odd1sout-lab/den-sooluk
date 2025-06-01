@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://odd1sout-lab.github.io/den-sooluk/sitemap.xml
